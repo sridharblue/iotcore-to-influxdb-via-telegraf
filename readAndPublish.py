@@ -11,7 +11,7 @@ GPIO.cleanup()
  
 # AWS IoT certificate based connection
 myMQTTClient = AWSIoTMQTTClient("123afhlss456")
-myMQTTClient.configureEndpoint("a1o969jrtehql8-ats.iot.ap-south-1.amazonaws.com", 8883)
+myMQTTClient.configureEndpoint("XXXXXX-ats.iot.ap-south-1.amazonaws.com", 8883)
 myMQTTClient.configureCredentials("/home/pi/demo/demo-cert/aws-root-cert.pem", "/home/pi/demo/demo-cert/private-key.pem.key", "/home/pi/demo/demo-cert/iot-cert.pem.crt")
 myMQTTClient.configureOfflinePublishQueueing(-1)  # Infinite offline Publish queueing
 myMQTTClient.configureDrainingFrequency(2)  # Draining: 2 Hz
@@ -32,7 +32,7 @@ while 1:
         payload = '{ "timestamp": "' + now_str + '","temperature": ' + str(result.temperature) + ',"humidity": '+ str(result.humidity) + ' }'
         print payload
         myMQTTClient.publish("demotopic/demo", payload, 0)
-        sleep(4)
+        sleep(10)
     else:
         print (".")
         sleep(1)
